@@ -1,24 +1,12 @@
 /*
 ########################
-###############   Buttons
-########################
-*/
-
-void listenForInterrupts(void (*updateMoxieTotals)(void))
-{
-  addOneMoxiePoint("1");
-  updateMoxieTotals();
-}
-
-/*
-########################
 ###############   Storage
 ########################
 */
 
-uint32_t getMoxiePoints(String team_id)
+String getMoxiePoints(String team_id)
 {
-  return preferences.getUInt(team_id.c_str(), 0);
+  return String(preferences.getUInt(team_id.c_str(), 0));
 }
 
 void addOneMoxiePoint(String team_id)

@@ -31,7 +31,7 @@ void runWebsite(void *parameter)
   while (true)
   {
     handleRequests();
-    delay(1000);
+    delay(500);
   }
 }
 
@@ -43,15 +43,21 @@ void trackPoints(void *parameter)
   while (true)
   {
     printDiagnostics();
-    listenForInterrupts(updateMoxieTotals);
+    handleNewMoxiePoints(updateWebsite);
     delay(5000);
   }
 }
 
+void handleNewMoxiePoints(void (*tellWebsiteAboutNewMoxiePoints)(void))
+{
+  tellWebsiteAboutNewMoxiePoints();
+}
+
 void printDiagnostics()
 {
+  addOneMoxiePoint("test");
   Serial.println(WiFi.localIP());
-  Serial.println(getMoxiePoints("1"));
+  Serial.println(getMoxiePoints("test"));
 }
 
 // ignore

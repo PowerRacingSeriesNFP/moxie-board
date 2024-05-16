@@ -14,16 +14,11 @@ void homePage()
   server.send(200, "text/html", homePage);
 }
 
-// void updateWebsite()
-// {
-//   preferences.
-// }
-
-void updateMoxieTotals()
+void updateWebsite()
 {
-  String points = "";
-
-  for (int i = 0; i < 10; i++)
+  String points = "\n<p>test, " + getMoxiePoints("test") + "</p>";
+  
+  for (int i = 0; i < 24; i++)
   {
     points += "\n<p>" + String(i) + ", " + getMoxiePoints(String(i)) + "</p>";
   }
