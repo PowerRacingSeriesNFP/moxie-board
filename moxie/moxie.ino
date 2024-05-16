@@ -13,7 +13,6 @@ Preferences preferences;
 Adafruit_PCF8574 ioBoard0;
 Adafruit_PCF8574 ioBoard1;
 Adafruit_PCF8574 ioBoard2;
-Adafruit_PCF8574 ioBoard3;
 
 TaskHandle_t WebServer;
 TaskHandle_t MoxieBoard;
@@ -39,7 +38,7 @@ void runWebsite(void *parameter)
   {
     printDiagnostics();
     handleRequests();
-    delay(5000);
+    delay(1000);
   }
 }
 
