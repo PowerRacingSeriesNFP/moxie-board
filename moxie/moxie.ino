@@ -6,9 +6,13 @@
 #include <WiFi.h>
 #include <WebServer.h>
 #include <Preferences.h>
+#include <Adafruit_PCF8574.h>
 
 WebServer server(80);
 Preferences preferences;
+Adafruit_PCF8574 ioBoard0;
+Adafruit_PCF8574 ioBoard1;
+Adafruit_PCF8574 ioBoard2;
 
 TaskHandle_t WebServer;
 TaskHandle_t MoxieBoard;
@@ -16,6 +20,8 @@ TaskHandle_t MoxieBoard;
 void setup()
 {
   Serial.begin(115200);
+
+  delay(100);
 
   xTaskCreatePinnedToCore(runWebsite, "WebServer", 20000, NULL, 1, &WebServer, 0);
   xTaskCreatePinnedToCore(trackPoints, "MoxieBoard", 5000, NULL, 1, &MoxieBoard, 1);
@@ -30,8 +36,9 @@ void runWebsite(void *parameter)
 
   while (true)
   {
+    printDiagnostics();
     handleRequests();
-    delay(500);
+    delay(5000);
   }
 }
 
@@ -39,24 +46,19 @@ void trackPoints(void *parameter)
 {
 
   setupPointStorage();
-
+  setupIoExpanderBoards();
+  
   while (true)
   {
-    printDiagnostics();
-    handleNewMoxiePoints(updateWebsite);
-    delay(5000);
+    checkForButtonPresses();
+    delay(100);
   }
-}
-
-void handleNewMoxiePoints(void (*tellWebsiteAboutNewMoxiePoints)(void))
-{
-  tellWebsiteAboutNewMoxiePoints();
 }
 
 void printDiagnostics()
 {
-  addOneMoxiePoint("test");
   Serial.println(WiFi.localIP());
+  addOneMoxiePoint("test");
   Serial.println(getMoxiePoints("test"));
 }
 

@@ -28,6 +28,7 @@ void updateWebsite()
 
 void handleRequests()
 {
+  updateWebsite();
   server.handleClient();
 }
 
