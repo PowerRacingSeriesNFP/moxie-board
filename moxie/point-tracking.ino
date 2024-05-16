@@ -58,6 +58,9 @@ void checkForButtonPresses() {
     if(!ioBoard2.digitalRead(p)){
       addOneMoxiePoint(p + 16);
     }
+    if(!ioBoard3.digitalRead(p)){
+      addOneMoxiePoint(p + 24);
+    }
   }
 }
 
@@ -66,10 +69,12 @@ void setupIoExpanderBoards() {
   ioBoard0.begin(0x20, &Wire);
   ioBoard1.begin(0x21, &Wire);
   ioBoard2.begin(0x22, &Wire);
+  ioBoard3.begin(0x23, &Wire);
 
   for (uint8_t p=0; p<8; p++) {
     ioBoard0.pinMode(p, INPUT_PULLUP);
     ioBoard1.pinMode(p, INPUT_PULLUP);
     ioBoard2.pinMode(p, INPUT_PULLUP);
+    ioBoard3.pinMode(p, INPUT_PULLUP);
   }
 }
