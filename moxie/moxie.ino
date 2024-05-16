@@ -40,7 +40,7 @@ void trackPoints(void *parameter)
 
   setupPointStorage();
 
-  while (true)int
+  while (true)
   {
     printDiagnostics();
     listenForInterrupts(updateMoxieTotals);
