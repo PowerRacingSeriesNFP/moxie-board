@@ -1,3 +1,7 @@
+.vscode
+arduinoOutput
+ArduinoOutput
+
 # Prerequisites
 *.d
 

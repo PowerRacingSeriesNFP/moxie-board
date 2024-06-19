@@ -22,11 +22,12 @@ void setup()
   Serial.begin(115200);
 
   delay(100);
+  // xTaskCreatePinnedToCore(runWebsite, "WebServer", 32768, NULL, 2, &WebServer, 0);
+  xTaskCreatePinnedToCore(trackPoints, "MoxieBoard", 8192, NULL, 3, &MoxieBoard, 1);
 
-  xTaskCreatePinnedToCore(runWebsite, "WebServer", 20000, NULL, 1, &WebServer, 0);
-  xTaskCreatePinnedToCore(trackPoints, "MoxieBoard", 5000, NULL, 1, &MoxieBoard, 1);
+  // vTaskStartScheduler();
 
-  delay(500);
+  for( ;; ){}
 }
 
 void runWebsite(void *parameter)
@@ -34,10 +35,10 @@ void runWebsite(void *parameter)
 
   setupWebsite();
 
-  while (true)
+  while(true)
   {
-    printDiagnostics();
-    handleRequests();
+    Serial.println("website task");
+    // handleRequests();
     delay(1000);
   }
 }
@@ -48,21 +49,23 @@ void trackPoints(void *parameter)
   setupPointStorage();
   setupIoExpanderBoards();
   
-  while (true)
+  while(true)
   {
+    Serial.println("points task");
     checkForButtonPresses();
-    delay(100);
+    printDiagnostics();
+    delay(1000);
   }
 }
 
-void printDiagnostics()
-{
-  Serial.println(WiFi.localIP());
-  addOneMoxiePoint("test");
-  Serial.println(getMoxiePoints("test"));
+void printDiagnostics(){
+    addOneMoxiePoint("test");
+    Serial.println("team test has:");
+    Serial.println(getMoxiePoints("test"));
+
+    Serial.println("team 0 has:");
+    Serial.println(getMoxiePoints("0"));
 }
 
 // ignore
-void loop()
-{
-}
+void loop(){}

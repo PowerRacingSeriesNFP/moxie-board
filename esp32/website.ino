@@ -35,13 +35,15 @@ void handleRequests()
 void setupWebsite()
 {
   connectToWifi();
-  setupHttpServer();
+  // setupHttpServer();
 }
 
 void connectToWifi()
 {
-  const String WIFI_NAME = "PumpingStationOne";
-  const String WIFI_PASSWORD = "ps1frocks";
+  // const String WIFI_NAME = "PumpingStationOne";
+  // const String WIFI_PASSWORD = "ps1frocks";
+  const String WIFI_NAME = "mvav";
+  const String WIFI_PASSWORD = "mvav1tb!";
 
   WiFi.begin(WIFI_NAME, WIFI_PASSWORD);
 

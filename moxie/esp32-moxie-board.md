@@ -1,1 +1,0 @@
-Store moxie board points even if the power goes off! Show the points on a website.
