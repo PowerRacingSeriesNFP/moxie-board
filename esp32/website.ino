@@ -35,7 +35,7 @@ void handleRequests()
 void setupWebsite()
 {
   connectToWifi();
-  // setupHttpServer();
+  setupHttpServer();
 }
 
 void connectToWifi()

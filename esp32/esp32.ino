@@ -22,10 +22,9 @@ void setup()
   Serial.begin(115200);
 
   delay(100);
-  // xTaskCreatePinnedToCore(runWebsite, "WebServer", 32768, NULL, 2, &WebServer, 0);
+  xTaskCreatePinnedToCore(runWebsite, "WebServer", 32768, NULL, 2, &WebServer, 0);
   xTaskCreatePinnedToCore(trackPoints, "MoxieBoard", 8192, NULL, 3, &MoxieBoard, 1);
 
-  // vTaskStartScheduler();
 
   for( ;; ){}
 }
@@ -37,8 +36,8 @@ void runWebsite(void *parameter)
 
   while(true)
   {
-    Serial.println("website task");
-    // handleRequests();
+    printDiagnostics();
+    handleRequests();
     delay(1000);
   }
 }
@@ -51,10 +50,8 @@ void trackPoints(void *parameter)
   
   while(true)
   {
-    Serial.println("points task");
     checkForButtonPresses();
-    printDiagnostics();
-    delay(1000);
+    delay(100);
   }
 }
 
