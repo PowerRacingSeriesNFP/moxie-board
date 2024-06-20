@@ -16,16 +16,15 @@ void setup()
 void loop()
 {
 
-  // printDiagnostics();
-  tracker.get("0");
+  printDiagnostics();
   delay(1000);
 }
 
-// void printDiagnostics(){
-//     tracker.addOnePoint("test");
-//     Serial.println("team test has:");
-//     Serial.println(tracker.get("test"));
+void printDiagnostics(){
+    tracker.addOnePoint("test");
+    Serial.println("team test has:");
+    Serial.println(tracker.get("test"));
 
-//     Serial.println("team 0 has:");
-//     Serial.println(tracker.get("0"));
-// }
+    Serial.println("team 0 has:");
+    Serial.println(tracker.get("0"));
+}
