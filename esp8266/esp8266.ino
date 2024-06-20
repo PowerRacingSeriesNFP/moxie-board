@@ -3,27 +3,29 @@
   by Power Racing Series
 */
 
-#include "Points.h"
+#include "PointTracker.h"
 
-void setup() {
+PointTracker tracker;
+
+void setup()
+{
   Serial.begin(115200);
-
-  setupPointStorage();
-  // setupIoExpanderBoards();
   delay(1000);
 }
 
-void loop() {
-  
-  printDiagnostics();
+void loop()
+{
+
+  // printDiagnostics();
+  tracker.get("0");
   delay(1000);
 }
 
-void printDiagnostics(){
-    addOneMoxiePoint("test");
-    Serial.println("team test has:");
-    Serial.println(getMoxiePoints("test"));
+// void printDiagnostics(){
+//     tracker.addOnePoint("test");
+//     Serial.println("team test has:");
+//     Serial.println(tracker.get("test"));
 
-    Serial.println("team 0 has:");
-    Serial.println(getMoxiePoints("0"));
-}
+//     Serial.println("team 0 has:");
+//     Serial.println(tracker.get("0"));
+// }
