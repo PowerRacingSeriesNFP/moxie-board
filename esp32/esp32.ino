@@ -1,5 +1,5 @@
 /*
-  Moxie Board tracking
+  Moxie Board
   by Power Racing Series
 */
 
@@ -14,16 +14,16 @@ Adafruit_PCF8574 ioBoard0;
 Adafruit_PCF8574 ioBoard1;
 Adafruit_PCF8574 ioBoard2;
 
-TaskHandle_t WebServer;
-TaskHandle_t MoxieBoard;
+TaskHandle_t serverTask;
+TaskHandle_t pointsTask;
 
 void setup()
 {
   Serial.begin(115200);
 
   delay(100);
-  xTaskCreatePinnedToCore(runWebsite, "WebServer", 32768, NULL, 2, &WebServer, 0);
-  xTaskCreatePinnedToCore(trackPoints, "MoxieBoard", 8192, NULL, 3, &MoxieBoard, 1);
+  xTaskCreatePinnedToCore(runWebsite, "serverTask", 32768, NULL, 2, &serverTask, 0);
+  xTaskCreatePinnedToCore(trackPoints, "pointsTask", 8192, NULL, 3, &pointsTask, 1);
 
 
   for( ;; ){}
