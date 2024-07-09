@@ -21,10 +21,8 @@ void loop()
 }
 
 void printDiagnostics(){
-    tracker.addOnePoint("test");
-    Serial.println("team test has:");
-    Serial.println(tracker.get("test"));
-
-    Serial.println("team 0 has:");
+    tracker.addOnePoint("0");
+    
+    Serial.print("team 0: ");
     Serial.println(tracker.get("0"));
 }

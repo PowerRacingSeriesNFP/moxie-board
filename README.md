@@ -5,6 +5,8 @@ What's the moxie board? [Check the explanation at link](https://github.com/Power
 
 This project has code for an esp8266 based points tracker + website. We used an ESP-WROOM-02 D1 [like these](https://www.aliexpress.us/w/wholesale-ESP%2525252dWROOM%2525252d02-18650.html?spm=a2g0o.home.search.0) and [these](https://www.amazon.com/dp/B0CJ9P7GWJJ).
 
+But it does run on a regular esp32!
+
 We used vscode + the arduino extension + the arduino CLI. The regular arduino IDE should also work, but if you're starting from scratch Please give [https://platformio.org/](https://platformio.org/) + VSCode a chance first, it's better if you haven't already learned the arduino IDE.
 
 
@@ -20,8 +22,10 @@ I have no idea, one board works the other doesn't. Maybe grounding GPIO 0 during
 ## Arduino based dev setup
 
 
-- [Board support library]( `http://arduino.esp8266.com/stable/package_esp8266com_index.json`)
-  - choose `ESP8266_WEMOS_D1WROOM02`
+- WEMOS esp8266 w/ battery charger support library
+  - http://arduino.esp8266.com/stable/package_esp8266com_index.json
+  - paste into Board Manager's `Additional URLs` section
+  - In board config choose `ESP8266_WEMOS_D1WROOM02`
 - [Preferences](https://www.arduino.cc/reference/en/libraries/preferences/)
 - [Task Scheduler](https://www.arduino.cc/reference/en/libraries/taskscheduler/)
 - [Adafruit PCF8574](https://www.arduino.cc/reference/en/libraries/adafruit-pcf8574/)

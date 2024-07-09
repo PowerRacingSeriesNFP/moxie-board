@@ -1,6 +1,6 @@
 .vscode
+.history
 arduinoOutput
-ArduinoOutput
 
 # Prerequisites
 *.d
